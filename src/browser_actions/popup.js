@@ -35,6 +35,9 @@ window.onload = () => {
             setDarkTheme();
         }
     });
+
+    const exportBtn = document.querySelector("#export-button");
+    exportBtn.addEventListener("click", (e) => exportJson());
 };
 
 const renderClippings = (clippings) => {
@@ -172,4 +175,15 @@ const setLightTheme = () => {
 const setDarkTheme = () => {
     htmlElement.classList.add("dark-theme");
     themePath.setAttribute("d", sunSvgPath);
+}
+
+const exportJson = () => {
+    const clipboardHistory = JSON.stringify(clippingsList);
+    var exportLink = document.createElement("a"),
+    exportBlob = new Blob([clipboardHistory], { type: "octet/stream" }),
+    exportName = "clipboard-history.json",
+    exportUrl = window.URL.createObjectURL(exportBlob);
+    exportLink.setAttribute("href", exportUrl);
+    exportLink.setAttribute("download", exportName);
+    exportLink.click();
 }
