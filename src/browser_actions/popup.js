@@ -87,9 +87,9 @@ const addClip = (clip) => {
 }
 
 const onSearchInputKeyup = (e) => {
-    this.searchText = e.target.value.toLowerCase();
-    const filteredList = filterClippingsList(clippingsList, this.searchText);
-    handleSearch(this.searchText, filteredList);
+    searchText = e.target.value.toLowerCase();
+    const filteredList = filterClippingsList(clippingsList, searchText);
+    handleSearch(searchText, filteredList);
 }
 
 const handleSearch = (searchText, filteredList) => {
@@ -181,7 +181,13 @@ const setDarkTheme = () => {
 }
 
 const exportJson = () => {
-    const clipboardHistory = JSON.stringify(clippingsList);
+    let clipboardHistory = []
+    const filteredList = filterClippingsList(clippingsList, searchText);
+    if (filteredList.length == 0) {
+        clipboardHistory = JSON.stringify(clippingsList);
+    } else {
+        clipboardHistory = JSON.stringify(filteredList);
+    }
     const exportLink = document.createElement("a");
     var exportBlob = new Blob([clipboardHistory], { type: "octet/stream" });
     const todayDate = new Date().toLocaleDateString("en-GB");
