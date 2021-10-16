@@ -179,10 +179,11 @@ const setDarkTheme = () => {
 
 const exportJson = () => {
     const clipboardHistory = JSON.stringify(clippingsList);
-    var exportLink = document.createElement("a"),
-    exportBlob = new Blob([clipboardHistory], { type: "octet/stream" }),
-    exportName = "clipboard-history.json",
-    exportUrl = window.URL.createObjectURL(exportBlob);
+    const exportLink = document.createElement("a");
+    var exportBlob = new Blob([clipboardHistory], { type: "octet/stream" });
+    const todaysDate = new Date().toLocaleDateString("en-GB");
+    const exportName = `clipboard-history-${todaysDate}.json`;
+    const exportUrl = window.URL.createObjectURL(exportBlob);
     exportLink.setAttribute("href", exportUrl);
     exportLink.setAttribute("download", exportName);
     exportLink.click();
