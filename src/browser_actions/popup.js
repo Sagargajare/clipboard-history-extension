@@ -181,10 +181,10 @@ const exportJson = () => {
     const clipboardHistory = JSON.stringify(clippingsList);
     const exportLink = document.createElement("a");
     var exportBlob = new Blob([clipboardHistory], { type: "octet/stream" });
-    const todaysDate = new Date().toLocaleDateString("en-GB");
-    const exportName = `clipboard-history-${todaysDate}.json`;
+    const todayDate = new Date().toLocaleDateString("en-GB");
+    const exportFileName = `clipboard-history-${todayDate}.json`;
     const exportUrl = window.URL.createObjectURL(exportBlob);
     exportLink.setAttribute("href", exportUrl);
-    exportLink.setAttribute("download", exportName);
+    exportLink.setAttribute("download", exportFileName);
     exportLink.click();
 }
