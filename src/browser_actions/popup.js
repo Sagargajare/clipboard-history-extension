@@ -183,7 +183,7 @@ const setDarkTheme = () => {
 const exportJson = () => {
     let clipboardHistory = []
     const filteredList = filterClippingsList(clippingsList, searchText);
-    if (filteredList.length == 0) {
+    if (!searchText) {
         clipboardHistory = JSON.stringify(clippingsList);
     } else {
         clipboardHistory = JSON.stringify(filteredList);
